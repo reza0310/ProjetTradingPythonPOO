@@ -16,7 +16,7 @@ Next step is to install the parent project. Download our [teacher's repository](
 - Replace line 2 with `import os` (for optimisation purposes)
 - Replace lines 3 and 4 with `sys.path.append(os.path.join(os.path.dirname(__file__), 'ProjetTradingPythonPOO'))`
 - Replace the line wich is now line 5 with `from bot import Bot`
-- Replace the line wich is now line 7 with `robot1 = Bot()`<br>
+- Replace the line wich is now line 7 with `robot1 = Bot()`<br><br>
 Congratulations! You now have the parent project!
 
 The final step is to install the child project. First download it as ZIP like you did for the last one from [this link](https://github.com/reza0310/ProjetTradingPythonPOO) (wich might be the link you're actually on). Then extract it into the parent project's folder. You should now have a new folder into the parent folder.<br>
