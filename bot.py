@@ -9,10 +9,12 @@ path = os.path.dirname(__file__)
 # Ajout du path du dossier parent à la liste de recher d'importe:
 # -os.sep est une variable contenant le séparateur de path de notre système d'exploitation (/ pour Linux, \ pour windows, ...)
 # -path[:path.rfind(os.sep)] permet d'extraire une sous-chaîne en l'occurence la partie de path allant jusqu'à son dernier os.sep
-# -sys.path.append() permet d'ajouter
+# -sys.path.append() permet d'ajouter le path nouvellement créé aux chemins de recherche de l'import
 sys.path.append(path[:path.rfind(os.sep)])
+# On importe beaglebot
 import beaglebot
 
+# On en hérite
 class Bot(beaglebot.BeagleBot):
 
     def process_candle(self, candle_msg):
