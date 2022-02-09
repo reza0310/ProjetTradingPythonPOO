@@ -15,8 +15,8 @@ with open("clef.txt", "r") as f:
 
 finnhub_client = finnhub.Client(api_key=clef)
 
-debut = 1600000000
-fin = 1640000000
+debut = 1300000000
+fin = 1645000000
 
 date_debut, heure_debut = str(datetime.datetime.fromtimestamp(debut)).split(" ")
 date_debut = date_debut.split("-")
@@ -42,6 +42,6 @@ for x in SYMBOLS:
 
 with open(path+"/candle_sample.txt", "w+") as f:
     f.truncate(0)
-    for i in range(mini(results[0])):
+    for i in range(mini(results)):
         for j in range(6):
-            f.write(str(results[j][i])+"\n")
+            f.write(str(results[j][i]).replace("'", '"')+"\n")

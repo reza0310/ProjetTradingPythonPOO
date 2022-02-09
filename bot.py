@@ -20,7 +20,7 @@ import beaglebot
 class Bot(beaglebot.BeagleBot):
 
     def __init__(self, *args):
-        super(Bot, self).__init__(args)
+        super(Bot, self).__init__(*args)
         self.symboles = ["AAPL", "TSLA", "ATVI", "DIS", "AMZN", "BINANCE:BTCUSDT"]
         self.listes = []
         for i in range(len(self.symboles)):
@@ -38,11 +38,12 @@ class Bot(beaglebot.BeagleBot):
             # On se simplifie la tâche en préselectionnant le repère
             candle_data = candle_data[symbole]
             v = round(candle_data['c']-candle_data['o'], 2)
-            print(type(self.client))
-            if v < 0 and v < self.listes[self.symboles.index(symbole)][-1]:
-                self.client.sell(symbole, self.actions[symbole])
-                self.actions[symbole] = 0
-            elif self.client.money > candle_data['c'] and v > 0 and v > self.listes[self.symboles.index(symbole)][-1]:
-                self.client.buy(symbole, (self.client.money*0.1)//candle_data['c'])
-                self.actions[symbole] = 0
-            self.listes[self.symboles.index(symbole)].append(v)
+            indice = self.symboles.index(symbole)
+            if v < 0 and v < self.listes[indice][-1] and self.listes[indice][-1] < 0:
+                somme = (self.client.money*0.5)//candle_data['c']
+                self.client.buy(symbole, somme)
+                self.actions[indice] += somme
+            elif self.client.money > candle_data['c'] and v > 0 and v > self.listes[indice][-1] and self.listes[indice][-1] > 0:
+                self.client.sell(symbole, self.actions[indice])
+                self.actions[indice] = 0
+            self.listes[indice].append(v)
