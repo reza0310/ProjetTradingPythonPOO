@@ -19,6 +19,9 @@ print("Récupération et insertion des données allant du", date_debut[2]+"/"+da
 
 path = os.path.dirname(__file__)
 print("PATH:", path[:path.rfind("/")]+"/candle_sample.txt")
+api_call = finnhub_client.stock_candles('AAPL', 1, debut, fin)
 with open(path[:path.rfind("/")]+"/candle_sample.txt", "w+") as f:
     f.truncate(0)
-    f.write(str(finnhub_client.stock_candles('AAPL', 1, debut, fin)))
+    for i in range(len(api_call['t'])):
+        newdict = {'c': api_call['c'][i], 'h': api_call['h'][i], 'l': api_call['l'][i], 'o': api_call['o'][i], 's': 'ok', 't': api_call['t'][i], 'v': api_call['v'][i]}
+        f.write(str(newdict)+"\n")
