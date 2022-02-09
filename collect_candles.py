@@ -40,7 +40,7 @@ for x in SYMBOLS:
             newdict = {x: {'s': 'no_data'}}
         results[SYMBOLS.index(x)].append(newdict)
 
-with open(path[:path.rfind("/")]+"/candle_sample.txt", "w+") as f:
+with open(path+"/candle_sample.txt", "w+") as f:
     f.truncate(0)
     for i in range(mini(results[0])):
         for j in range(6):

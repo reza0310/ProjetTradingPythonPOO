@@ -22,13 +22,13 @@ class Bot(beaglebot.BeagleBot):
     def process_candle(self, candle_msg):
         # On convertit la candle récupérée sous forme textuelle en dictionnaire
         candle_data = json.loads(candle_msg)
+        symbole = [x for x in candle_data.keys()][0]
         # On en vérifie la validité (Présence de donnée et apparatenance au repère AAPL
-        if "AAPL" in candle_data.keys() and candle_data['AAPL']['s'] == "ok":
+        if candle_data[symbole]['s'] == "ok":
             # On se simplifie la tâche en préselectionnant le repère
-            candle_data = candle_data['AAPL']
+            candle_data = candle_data[symbole]
             print('Data:', candle_data)
             # On parcourt toutes les données qui peuvent arriver par plusieurs de notre candle
-            for i in range(len(candle_data['t'])):
-                print("Variation totale du prix:", round(candle_data['h'][i]-candle_data['l'][i], 2), "€")
-                v = round(candle_data['c'][i]-candle_data['o'][i], 2)
-                print("Variation au cours de la journée:", "+" if v > 0 else "", str(v), "€")
+            print("Variation totale du prix:", round(candle_data['h']-candle_data['l'], 2), "€")
+            v = round(candle_data['c']-candle_data['o'], 2)
+            print("Variation au cours de la journée:", "+" if v > 0 else "", str(v), "€")
