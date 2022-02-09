@@ -22,9 +22,12 @@ class Bot(beaglebot.BeagleBot):
     def __init__(self, *args):
         super(Bot, self).__init__(*args)
         self.symboles = ["AAPL", "TSLA", "ATVI", "DIS", "AMZN", "BINANCE:BTCUSDT"]
-        self.listes = []
+        self.listes_variations = []
         for i in range(len(self.symboles)):
-            self.listes.append([0])
+            self.listes_variations.append([0])
+        self.listes_valeurs = []
+        for i in range(len(self.symboles)):
+            self.listes_valeurs.append([0])
         self.actions = []
         for i in range(len(self.symboles)):
             self.actions.append(0)
@@ -37,13 +40,40 @@ class Bot(beaglebot.BeagleBot):
         if candle_data[symbole]['s'] == "ok":
             # On se simplifie la tâche en préselectionnant le repère
             candle_data = candle_data[symbole]
-            v = round(candle_data['c']-candle_data['o'], 2)
+            variation = round(candle_data['c']-candle_data['o'], 2)
             indice = self.symboles.index(symbole)
-            if v < 0 and v < self.listes[indice][-1] and self.listes[indice][-1] < 0:
-                somme = (self.client.money*0.5)//candle_data['c']
-                self.client.buy(symbole, somme)
-                self.actions[indice] += somme
-            elif self.client.money > candle_data['c'] and v > 0 and v > self.listes[indice][-1] and self.listes[indice][-1] > 0:
-                self.client.sell(symbole, self.actions[indice])
-                self.actions[indice] = 0
-            self.listes[indice].append(v)
+            #self.strategie1(candle_data, variation, indice, symbole)
+            self.strategie2(candle_data, indice, symbole)
+            self.listes_variations[indice].append(variation)
+            self.listes_valeurs[indice].append(candle_data['c'])
+
+    def moyenne(self, periode, indice):
+        if periode == "court" and len(self.listes_valeurs[indice]) > 12:
+            sub = self.listes_valeurs[indice][-12:]
+            return sum(sub)/len(sub)
+        elif periode == "moyen" and len(self.listes_valeurs[indice]) > 100:
+            sub = self.listes_valeurs[indice][-100:]
+            return sum(sub)/len(sub)
+        elif periode == "long" and len(self.listes_valeurs[indice]) > 549:
+            sub = self.listes_valeurs[indice][-549:]
+        else:
+            sub = self.listes_valeurs[indice]
+        return sum(sub)/len(sub)
+
+    def strategie1(self, candle_data, variation, indice, symbole):
+        if self.client.money > candle_data['c'] and variation < self.listes_variations[indice][-1] < 0:
+            somme = (self.client.money * 0.3) // candle_data['c']
+            self.client.buy(symbole, somme)
+            self.actions[indice] += somme
+        elif variation > self.listes_variations[indice][-1] > 0:
+            self.client.sell(symbole, self.actions[indice])
+            self.actions[indice] = 0
+
+    def strategie2(self, candle_data, indice, symbole):
+        if self.client.money > candle_data['c'] and self.moyenne('court', indice) < self.moyenne('long', indice):
+            somme = self.client.money // candle_data['c']
+            self.client.buy(symbole, somme)
+            self.actions[indice] += somme
+        elif self.moyenne('court', indice) > self.moyenne('long', indice):
+            self.client.sell(symbole, self.actions[indice])
+            self.actions[indice] = 0
