@@ -43,20 +43,20 @@ class Bot(beaglebot.BeagleBot):
             candle_data = candle_data[symbole]
             variation = round(candle_data['c']-candle_data['o'], 2)
             indice = self.symboles.index(symbole)
-            #self.strategie1(candle_data, variation, indice, symbole)
-            self.strategie2(candle_data, indice, symbole)
+            self.strategie1(candle_data, variation, indice, symbole)
+            #self.strategie2(candle_data, indice, symbole)
             #self.strategie3(candle_data, indice, symbole)
-            #self.strategie4(candle_data, variation, indice, symbole)
+            self.strategie4(candle_data, variation, indice, symbole)
             self.listes_variations[indice].append(variation)
             self.listes_valeurs[indice].append(candle_data['c'])
 
     def moyenne(self, periode, indice):
         if periode == "court":
-            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//11):]
+            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//20):]
         elif periode == "moyen":
-            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//10.5):]
-        elif periode == "long":
             sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//10):]
+        elif periode == "long":
+            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//5):]
         return sum(sub)/len(sub)
 
     def strategie1(self, candle_data, variation, indice, symbole):
