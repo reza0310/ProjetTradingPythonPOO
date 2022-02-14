@@ -46,7 +46,7 @@ class Bot(beaglebot.BeagleBot):
             self.strategie1(candle_data, variation, indice, symbole)
             #self.strategie2(candle_data, indice, symbole)
             #self.strategie3(candle_data, indice, symbole)
-            self.strategie4(candle_data, variation, indice, symbole)
+            #self.strategie4(candle_data, variation, indice, symbole)
             self.listes_variations[indice].append(variation)
             self.listes_valeurs[indice].append(candle_data['c'])
 
