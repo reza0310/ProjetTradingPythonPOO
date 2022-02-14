@@ -24,13 +24,14 @@ class Bot(beaglebot.BeagleBot):
         self.symboles = ["AAPL", "TSLA", "ATVI", "DIS", "AMZN", "BINANCE:BTCUSDT"]
         self.listes_variations = []
         for i in range(len(self.symboles)):
-            self.listes_variations.append([0])
+            self.listes_variations.append([0, 0])
         self.listes_valeurs = []
         for i in range(len(self.symboles)):
             self.listes_valeurs.append([0])
         self.actions = []
         for i in range(len(self.symboles)):
             self.actions.append(0)
+        self.achetes = []
 
     def process_candle(self, candle_msg):
         # On convertit la candle récupérée sous forme textuelle en dictionnaire
@@ -44,20 +45,18 @@ class Bot(beaglebot.BeagleBot):
             indice = self.symboles.index(symbole)
             #self.strategie1(candle_data, variation, indice, symbole)
             self.strategie2(candle_data, indice, symbole)
+            #self.strategie3(candle_data, indice, symbole)
+            #self.strategie4(candle_data, variation, indice, symbole)
             self.listes_variations[indice].append(variation)
             self.listes_valeurs[indice].append(candle_data['c'])
 
     def moyenne(self, periode, indice):
-        if periode == "court" and len(self.listes_valeurs[indice]) > 12:
-            sub = self.listes_valeurs[indice][-12:]
-            return sum(sub)/len(sub)
-        elif periode == "moyen" and len(self.listes_valeurs[indice]) > 100:
-            sub = self.listes_valeurs[indice][-100:]
-            return sum(sub)/len(sub)
-        elif periode == "long" and len(self.listes_valeurs[indice]) > 549:
-            sub = self.listes_valeurs[indice][-549:]
-        else:
-            sub = self.listes_valeurs[indice]
+        if periode == "court":
+            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//11):]
+        elif periode == "moyen":
+            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//10.5):]
+        elif periode == "long":
+            sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//10):]
         return sum(sub)/len(sub)
 
     def strategie1(self, candle_data, variation, indice, symbole):
@@ -75,5 +74,21 @@ class Bot(beaglebot.BeagleBot):
             self.client.buy(symbole, somme)
             self.actions[indice] += somme
         elif self.moyenne('court', indice) > self.moyenne('long', indice):
+            self.client.sell(symbole, self.actions[indice])
+            self.actions[indice] = 0
+
+    def strategie3(self, candle_data, indice, symbole):
+        if symbole not in self.achetes:
+            somme = (self.client.money * 0.16) // candle_data['c']
+            self.client.buy(symbole, somme)
+            self.actions[indice] += somme
+            self.achetes.append(symbole)
+
+    def strategie4(self, candle_data, variation, indice, symbole):
+        if self.client.money > candle_data['c'] and variation < self.listes_variations[indice][-1] < self.listes_variations[indice][-2] < 0:
+            somme = (self.client.money * 0.3) // candle_data['c']
+            self.client.buy(symbole, somme)
+            self.actions[indice] += somme
+        elif variation > self.listes_variations[indice][-1] > self.listes_variations[indice][-2] > 0:
             self.client.sell(symbole, self.actions[indice])
             self.actions[indice] = 0
