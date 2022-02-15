@@ -2,6 +2,8 @@
 import os
 import sys
 import json
+import globals
+import datetime
 # Récupération du path (Chemin de fichier) du script actuel (bot.py):
 # -La variable __file__ est un objet désignant le fichier actuel
 # -os.path.dirname() permet d'en extraire le path
@@ -21,15 +23,14 @@ class Bot(beaglebot.BeagleBot):
 
     def __init__(self, *args):
         super(Bot, self).__init__(*args)
-        self.symboles = ["AAPL", "TSLA", "ATVI", "DIS", "AMZN", "BINANCE:BTCUSDT"]
         self.listes_variations = []
-        for i in range(len(self.symboles)):
+        for i in range(len(globals.symboles)):
             self.listes_variations.append([0, 0])
         self.listes_valeurs = []
-        for i in range(len(self.symboles)):
+        for i in range(len(globals.symboles)):
             self.listes_valeurs.append([0])
         self.actions = []
-        for i in range(len(self.symboles)):
+        for i in range(len(globals.symboles)):
             self.actions.append(0)
         self.achetes = []
 
@@ -42,11 +43,17 @@ class Bot(beaglebot.BeagleBot):
             # On se simplifie la tâche en préselectionnant le repère
             candle_data = candle_data[symbole]
             variation = round(candle_data['c']-candle_data['o'], 2)
-            indice = self.symboles.index(symbole)
+            indice = globals.symboles.index(symbole)
+            if globals.affichage:
+                globals.data[indice][0].append(candle_data['o'])
+                globals.data[indice][1].append(candle_data['c'])
+                globals.data[indice][2].append(candle_data['h'])
+                globals.data[indice][3].append(candle_data['l'])
+                globals.data[indice][4].append(datetime.datetime.fromtimestamp(candle_data['t']))
             self.strategie1(candle_data, variation, indice, symbole)
             #self.strategie2(candle_data, indice, symbole)
             #self.strategie3(candle_data, indice, symbole)
-            self.strategie4(candle_data, variation, indice, symbole)
+            #self.strategie4(candle_data, variation, indice, symbole)
             self.listes_variations[indice].append(variation)
             self.listes_valeurs[indice].append(candle_data['c'])
 
