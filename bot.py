@@ -49,7 +49,8 @@ class Bot(beaglebot.BeagleBot):
                 globals.data[indice][1].append(candle_data['c'])
                 globals.data[indice][2].append(candle_data['h'])
                 globals.data[indice][3].append(candle_data['l'])
-                globals.data[indice][4].append(datetime.datetime.fromtimestamp(candle_data['t']))
+                globals.data[indice][4].append(datetime.datetime.fromtimestamp(candle_data['t']).strftime("%d/%m/%y %HH%M"))
+                globals.argent.append(100000+self.client.gains())
             self.strategie1(candle_data, variation, indice, symbole)
             #self.strategie2(candle_data, indice, symbole)
             #self.strategie3(candle_data, indice, symbole)
@@ -68,7 +69,7 @@ class Bot(beaglebot.BeagleBot):
 
     def strategie1(self, candle_data, variation, indice, symbole):
         if self.client.money > candle_data['c'] and variation < self.listes_variations[indice][-1] < 0:
-            somme = (self.client.money * 0.3) // candle_data['c']
+            somme = (self.client.money * 0.5) // candle_data['c']
             self.client.buy(symbole, somme)
             self.actions[indice] += somme
         elif variation > self.listes_variations[indice][-1] > 0:

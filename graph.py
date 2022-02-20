@@ -3,6 +3,9 @@ import sys
 import shutil
 import globals
 import pandas
+sys.path.append("C:\\users\\dupre\\appdata\\local\\programs\\python\\python310\\lib\\site-packages")
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 if __name__ == "__main__":
@@ -18,12 +21,36 @@ if __name__ == "__main__":
     # On lance le bot normalement avec juste une variable différente
     sys.path.append(path)
     import main
-    dataframes = []
+
     for i in range(len(globals.symboles)):
-        dataframes.append([])
-        dataframes[i] = pandas.DataFrame({'open': globals.data[i][0],
-                       'close': globals.data[i][1],
-                       'high': globals.data[i][2],
-                       'low': globals.data[i][3]},
-                       index=globals.data[i][4])
-    print(dataframes[0])
+        print("Traitement du symbole", globals.symboles[i])
+
+        print("Initialisation de la figure (code pris ici: https://towardsdatascience.com/the-simplest-way-to-create-an-interactive-candlestick-chart-in-python-ee9c1cde50d8)...")
+        plot1 = go.Candlestick(x=globals.data[i][4],
+                               name="Chandelles",
+                               open=globals.data[i][0],
+                               high=globals.data[i][2],
+                               low=globals.data[i][3],
+                               close=globals.data[i][1])
+
+        plot2 = go.Scatter(
+            x=globals.data[i][4],
+            y=globals.argent,
+            name='Notre argent',
+            marker=dict(
+                color='rgb(34,163,192)'
+            )
+        )
+
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+        fig.add_trace(plot1)
+        fig.add_trace(plot2, secondary_y=True)
+
+        fig.update_layout(
+            title=f"{globals.symboles[i]}'s adjusted stock price",
+            yaxis_title="Prix ($)",
+            xaxis_title="Temps"
+        )
+
+        print("Affichage...")
+        fig.show()
