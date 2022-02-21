@@ -35,32 +35,32 @@ Congratulations! You just finished the installation!
 Now, to use it, check the [file-by-file description](https://github.com/reza0310/ProjetTradingPythonPOO#file-by-file-description) to know wich script to execute and why.
 
 ## File-by-file description
-- .gitignore: File listing the files and folders the author don't want to upload to github.
-- .gitmodules: Links to other student's projects for them to appear on our teacher's repository.
-- README.md: Informations for us students.
-- beaglebot.py: A simple example bot made by our teacher for demonstration purpose (wich our bot inherit from just for the line 9 and the challenge XD)
-- botorderclient.py: Client used by our bots to buy and sell stakes and to verify we don't cheat. Also give us informations about how much money and actions we have.
-- candle_sample.txt: Just some example data for us to test our bots on.
-- collect_candles.py: An old script to make candle_sample files.
-- collect_candles2.py: The actual script to make candle_sample files. Lines 10 and 13 are from starting and ending datetimes to collect data between. The API allow us to collect data month by month from today to a year before.
-- collect_data.py: \[TODO]
-- gui.py: \[TODO]
-- main.py: \[TODO]
-- main_simple.py: \[TODO]
-- FOLDER: ProjetTradingPythonPOO
-    - .gitignore: File listing the files and folders the author don't want to upload to github.
-    - LICENSE: A file expliciting your rights and duties about the project.
-    - README.en.md: A file in english explaining everything about the project.
-    - README.fr.md: A file in french explaining everything about the project.
-    - README.md: A file linking all languages README files.
-    - bot.py: \[TODO]
-    - collect_candles.py: \[TODO]
-    - globals.py: \[TODO]
-    - graph.py: \[TODO]
-    - A_year_worth_of_data.zip: File made with twelve uses of the collect_candles2.py script on the 14/02/2022 for archiving and API capacities bypassing purposes. Contains probably all data from 14/02/2021 to 14/02/2022.
-- FOLDER: shared
-    - \_\_init__.py: Empty file.
-    - shared.py: \[TODO]
+- [.gitignore](https://github.com/benjaminforest/beagleboys/blob/main/.gitignore): File listing the files and folders the author don't want to upload to github.
+- [.gitmodules](https://github.com/benjaminforest/beagleboys/blob/main/.gitmodules): Links to other student's projects for them to appear on our teacher's repository.
+- [README.md](https://github.com/benjaminforest/beagleboys/blob/main/README.md): Informations for us students.
+- [beaglebot.py](https://github.com/benjaminforest/beagleboys/blob/main/beaglebot.py): A simple example bot made by our teacher for demonstration purpose (wich our bot inherit from just for the line 9 and the challenge XD)
+- [botorderclient.py](https://github.com/benjaminforest/beagleboys/blob/main/botorderclient.py): Client used by our bots to buy and sell stakes and to verify we don't cheat. Also give us informations about how much money and actions we have.
+- [candle_sample.txt](https://github.com/benjaminforest/beagleboys/blob/main/candle_sample.txt): Just some example data for us to test our bots on.
+- [collect_candles.py](https://github.com/benjaminforest/beagleboys/blob/main/collect_candles.py): Executable but slow and not quite up-to-date. An old script to make candle_sample files.
+- [collect_candles2.py](https://github.com/benjaminforest/beagleboys/blob/main/collect_candles2.py): Executable. The actual script to make candle_sample files. Lines 10 and 13 are from starting and ending datetimes to collect data between. The API allow us to collect data month by month from today to a year before.
+- [collect_data.py](https://github.com/benjaminforest/beagleboys/blob/main/collect_data.py): Executable but useless. Yet another try at collecting condles. If you run into errors, check that you installed [the right module](https://stackoverflow.com/questions/42905748/i-am-getting-attribute-error-module-object-has-no-attribute-enabletrace-whi). It only save collected data every 100 candle and don't get close prices.
+- [gui.py](https://github.com/benjaminforest/beagleboys/blob/main/gui.py): Executable but useless. An exemple graphical interface to help students who need it to achieve their own.
+- [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py): EXECUTABLE. The core program. Linking every one of our bots to a [botorderclient](https://github.com/benjaminforest/beagleboys/blob/main/botorderclient.py) and using [shared's folder shared.py script](https://github.com/benjaminforest/beagleboys/blob/main/shared/shared.py) for basically everything.
+- [main_simple.py](https://github.com/benjaminforest/beagleboys/blob/main/main_simple.py): A simpler version of main.py. Might be executable if the [parent project's author](https://github.com/benjaminforest) accept [pull request #4](https://github.com/benjaminforest/beagleboys/pull/4).
+- FOLDER: shared (A folder containing main.py's important code)
+    - [\_\_init__.py](https://github.com/benjaminforest/beagleboys/blob/main/shared/__init__.py): Empty file. (May not exist anymore if [our teacher](https://github.com/benjaminforest) accept [pull request #3](https://github.com/benjaminforest/beagleboys/pull/3)).
+    - [shared.py](https://github.com/benjaminforest/beagleboys/blob/main/shared/shared.py): Functions being basically the whole code of [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py).
+- FOLDER: ProjetTradingPythonPOO (My team's project)
+    - [.gitignore](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/.gitignore): File listing the files and folders the author don't want to upload to github.
+    - [LICENSE](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/LICENSE): A file expliciting your rights and duties about the project.
+    - [README.en.md](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/README.en.md): A file in english explaining everything about the project. This very file you are actually reading.
+    - [README.fr.md](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/README.fr.md): A file in french explaining everything about the project.
+    - [README.md](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/README.md): A file linking all languages README files.
+    - [bot.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/bot.py): My team's bot. Can't be called directly. Inherit from [beaglebot.py](https://github.com/benjaminforest/beagleboys/blob/main/beaglebot.py) to get self.client wich is an instance from [botorderclient.py](https://github.com/benjaminforest/beagleboys/blob/main/botorderclient.py). Uses [ProjetTradingPythonPOO/globals.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/globals.py) to communicate with [ProjetTradingPythonPOO/graph.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/graph.py).
+    - [collect_candles.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/collect_candles.py): My own try at making the [collect_candle.py](https://github.com/benjaminforest/beagleboys/blob/main/collect_candles.py) file based on our teacher's description while he was making it himself.
+    - [globals.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/globals.py): A small file to define some ultra-global variables to make [ProjetTradingPythonPOO/bot.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/bot.py) and [ProjetTradingPythonPOO/graph.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/graph.py) communicate.
+    - [graph.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/graph.py): EXECUTABLE. Uses [ProjetTradingPythonPOO/globals.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/globals.py) to inform [ProjetTradingPythonPOO/bot.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/bot.py) (who inherit from [beaglebot.py](https://github.com/benjaminforest/beagleboys/blob/main/beaglebot.py)) to collect data while executing (by using the "affichage" boolean). Then make a copy of [candle_sample.txt](https://github.com/benjaminforest/beagleboys/blob/main/candle_sample.txt) at ProjetTradingPythonPOO/candle_sample.txt before executing [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py) (who uses [shared/shared.py](https://github.com/benjaminforest/beagleboys/blob/main/shared/shared.py) and connect bots to [botorderclient.py](https://github.com/benjaminforest/beagleboys/blob/main/botorderclient.py)) for [ProjetTradingPythonPOO/bot.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/bot.py) to collect data about candles and, moreover, about himself. After this crucial execution, this script ask [ProjetTradingPythonPOO/globals.py](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/globals.py) for the data and set up a cool display for each symbol showing this symbol's variations and our bot's money over the time. I know there's a lot of files involved but basically that's the script you are looking for if you just wanna see cool results XD.
+    - [A_year_worth_of_data.zip](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/A_year_worth_of_data.zip): File made with twelve uses of the [collect_candles2.py](https://github.com/benjaminforest/beagleboys/blob/main/collect_candles2.py) script on the 14/02/2022 for archiving and API capacities bypassing purposes. Contains probably all data from 14/02/2021 to 14/02/2022.
 - All of the remaining folders are other student's projects wich I didn't studied so I can't say a lot about these.
 
 ## How to contribute?
