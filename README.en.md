@@ -77,4 +77,4 @@ reza0310: [contact page](https://github.com/reza0310#a-propos-de-mon-profil).
 See the ["LICENSE" file](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/LICENSE).
 
 ### Last updated 
-Sunday 20th February 2022
+Tuesday 22th February 2022
