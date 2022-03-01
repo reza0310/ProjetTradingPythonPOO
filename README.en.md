@@ -15,10 +15,10 @@
 This project is actually a school project. Our objective is to make a bot able to make the maximum of money from some data. Data comes from "https://finnhub.io/docs/api/stock-candles". It is not intended for use on real markets nor anything like that don't try to make money out of it you risk losing it all.
 
 ## Versions
-0.0: In development (not working)
-1.1: First working version with only two strategies
-1.2: Added a third and a fourth strategy and tried on some more data to test our strategies' ability to adapt to different situations
-1.3: Added a visual representation and decided to use strategy one after version 1.2's researchs (actual version)
+0.0: In development (not working)<br>
+1.1: First working version with only two strategies<br>
+1.2: Added a third and a fourth strategy and tried on some more data to test our strategies' ability to adapt to different situations<br>
+1.3: Added a visual representation and decided to use strategy one after version 1.2's researchs (actual version)<br>
 
 ## How to install and use it?
 For this section, we will assume that you know how to use a computer but know nothing about programming. If you need any help, [contact us](https://github.com/reza0310/ProjetTradingPythonPOO#contact-us).
