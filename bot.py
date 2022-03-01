@@ -21,6 +21,7 @@ import beaglebot
 # On en hérite
 class Bot(beaglebot.BeagleBot):
 
+    # On défini les attributs utiles
     def __init__(self, *args):
         super(Bot, self).__init__(*args)
         self.listes_variations = []
@@ -34,6 +35,7 @@ class Bot(beaglebot.BeagleBot):
             self.actions.append(0)
         self.achetes = []
 
+    # Fonction qui gère les chandelles de données
     def process_candle(self, candle_msg):
         # On convertit la candle récupérée sous forme textuelle en dictionnaire
         candle_data = json.loads(candle_msg)
@@ -42,8 +44,10 @@ class Bot(beaglebot.BeagleBot):
         if candle_data[symbole]['s'] == "ok":
             # On se simplifie la tâche en préselectionnant le repère
             candle_data = candle_data[symbole]
+            # On récupère certaines données utiles
             variation = round(candle_data['c']-candle_data['o'], 2)
             indice = globals.symboles.index(symbole)
+            # Si graph.py nous le demande, on collecte des données d'affichage
             if globals.affichage:
                 globals.data[indice][0].append(candle_data['o'])
                 globals.data[indice][1].append(candle_data['c'])
@@ -51,13 +55,17 @@ class Bot(beaglebot.BeagleBot):
                 globals.data[indice][3].append(candle_data['l'])
                 globals.data[indice][4].append(datetime.datetime.fromtimestamp(candle_data['t']).strftime("%d/%m/%y %HH%M"))
                 globals.argent.append(100000+self.client.gains())
+            # On applique notre stratégie (la n°1)
             self.strategie1(candle_data, variation, indice, symbole)
             #self.strategie2(candle_data, indice, symbole)
             #self.strategie3(candle_data, indice, symbole)
             #self.strategie4(candle_data, variation, indice, symbole)
+            
+            # On enregistre
             self.listes_variations[indice].append(variation)
             self.listes_valeurs[indice].append(candle_data['c'])
 
+    # Fonction utilisée par la stratégie 2 pour récupérer les prix moyens sur une période donnée mais la période dépend beaucoup trop du jeu de données
     def moyenne(self, periode, indice):
         if periode == "court":
             sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//20):]
@@ -67,6 +75,7 @@ class Bot(beaglebot.BeagleBot):
             sub = self.listes_valeurs[indice][-(len(self.listes_valeurs[indice])//5):]
         return sum(sub)/len(sub)
 
+    # Les 4 fonctions suivantes sont nos stratégies. Plutôt explicite n'est-ce pas?
     def strategie1(self, candle_data, variation, indice, symbole):
         if self.client.money > candle_data['c'] and variation < self.listes_variations[indice][-1] < 0:
             somme = (self.client.money * 0.5) // candle_data['c']
