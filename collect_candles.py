@@ -15,7 +15,7 @@ with open("clef.txt", "r") as f:
 
 finnhub_client = finnhub.Client(api_key=clef)
 
-# Prepare les horodates pour la requête à l'API
+# Prépare les horodates pour la requête à l'API
 debut = 1300000000
 fin = 1645000000
 
