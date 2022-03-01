@@ -26,7 +26,7 @@ For this section, we will assume that you know how to use a computer but know no
 First, you're gonna need python. For this part, check [my tutorial on how to do so](https://github.com/reza0310/Tutorials/blob/python/README.en.md).<br>
 Congratulations! You now have Python!
 
-Next step is to install the parent project. Download our [teacher's repository](https://github.com/benjaminforest/beagleboys). For those of you who think it's a little bit too much just to launch an object, note that it was designed to make a bunch of bots like ours compete.<br>
+Next step is to install the parent project. Download our [teacher's repository](https://github.com/benjaminforest/beagleboys) and unzip it anywhere. For those of you who think it's a little bit too much just to launch an object, note that it was designed to make a bunch of bots like ours compete.<br>
 Congratulations! You now have the parent project!
 
 The final step is to install the child project wich is ours. First download it as ZIP like you did for the last one from [this link](https://github.com/reza0310/ProjetTradingPythonPOO) (wich might be the link you're coming from). Then extract it into the parent project's folder. If it asks you if you want to replace files, approve.<br>
@@ -77,4 +77,4 @@ reza0310: [contact page](https://github.com/reza0310#a-propos-de-mon-profil).
 See the ["LICENSE" file](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/LICENSE).
 
 ### Last updated 
-Tuesday 22th February 2022
+Tuesday 1st March 2022
