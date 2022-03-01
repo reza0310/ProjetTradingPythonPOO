@@ -64,8 +64,8 @@ Maintenant, pour le lancer, regardez la [description fichier par fichier](https:
 - Tout les autres dossiers sont les projets d'autres étudiants que je n'ai pas étudié et que je peux (ni ne veux en vrai j'ai autre chose à faire et c'est pas mon rôle) documenter.
 
 ## Comment contribuer?
-Sachant qu'il s'agit d'un projet scolaire, seuls les camarades de mon groupe de travail son autorisés à participer. Si vous avez vraiment très envie de modifier des choses je ne peux que vous conseiller de faire une fork et si vous voulez que je publie vos modifications pour une raison ou pour une autre [venez en discuter avec moi](https://github.com/reza0310/ProjetTradingPythonPOO#contact-us).
-Malgré celà, vous pouvez quand même nous aider en ouvrant des rapports de problèmes (bugs, demandes, ...) sur la [page dédiée](https://github.com/reza0310/ProjetTradingPythonPOO/issues)! Si vous le faites, merci beaucoup!
+Sachant qu'il s'agit d'un projet scolaire, seuls les camarades de mon groupe de travail son autorisés à participer. Si vous avez vraiment très envie de modifier des choses je ne peux que vous conseiller de faire une fork et si vous voulez que je publie vos modifications pour une raison ou pour une autre [venez en discuter avec moi](https://github.com/reza0310/ProjetTradingPythonPOO#contact-us).<br>
+Malgré cela, vous pouvez quand même nous aider en ouvrant des rapports de problèmes (bugs, demandes, ...) sur la [page dédiée](https://github.com/reza0310/ProjetTradingPythonPOO/issues)! Si vous le faites, merci beaucoup!
 
 ## FAQ
 Aucune question ne nous a encore été posée.
