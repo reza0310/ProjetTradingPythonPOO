@@ -47,10 +47,10 @@ Now, to use it, check the [file-by-file description](https://github.com/reza0310
 - [gui.py](https://github.com/benjaminforest/beagleboys/blob/main/gui.py): Executable but useless. An exemple graphical interface to help students who need it to achieve their own.
 - [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py): EXECUTABLE. The core program. Linking every one of our bots to a [botorderclient](https://github.com/benjaminforest/beagleboys/blob/main/botorderclient.py) and using [shared's folder shared.py script](https://github.com/benjaminforest/beagleboys/blob/main/shared/shared.py) for basically everything.
 - [main_simple.py](https://github.com/benjaminforest/beagleboys/blob/main/main_simple.py): A simpler version of [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py). Might be executable if the [parent project's author](https://github.com/benjaminforest) accept [pull request #4](https://github.com/benjaminforest/beagleboys/pull/4).
-- FOLDER: shared (A folder containing main.py's important code)
+- FOLDER: [shared](https://github.com/benjaminforest/beagleboys/tree/main/shared) (A folder containing main.py's important code)
     - [\_\_init__.py](https://github.com/benjaminforest/beagleboys/blob/main/shared/__init__.py): Empty file. (May not exist anymore if [our teacher](https://github.com/benjaminforest) accept [pull request #3](https://github.com/benjaminforest/beagleboys/pull/3)).
     - [shared.py](https://github.com/benjaminforest/beagleboys/blob/main/shared/shared.py): Functions being basically the whole code of [main.py](https://github.com/benjaminforest/beagleboys/blob/main/main.py).
-- FOLDER: ProjetTradingPythonPOO (My team's project)
+- FOLDER: [ProjetTradingPythonPOO](https://github.com/reza0310/ProjetTradingPythonPOO) (My team's project)
     - [.gitignore](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/.gitignore): File listing the files and folders the author don't want to upload to github.
     - [LICENSE](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/LICENSE): A file expliciting your rights and duties about the project.
     - [README.en.md](https://github.com/reza0310/ProjetTradingPythonPOO/blob/main/README.en.md): A file in english explaining everything about the project. This very file you are actually reading.
